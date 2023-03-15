@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,8 +31,11 @@ public class Board {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "BOARD_SEQUENCE_GEN")
 	private Long boardNo;
 	
+	@NotBlank
 	@Column(length=200, nullable=false)
 	private String title;
+	
+	@NotBlank
 	@Column(length=50, nullable=false)
 	private String writer;
 	@Lob
