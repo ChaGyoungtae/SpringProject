@@ -6,12 +6,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	
 	<script>
-		$(document).ready(function() {
-			var formObj = $("board");
+		$(document).ready(function(){
+			var formObj = $("#board");
 			
 			console.log(formObj);
 			
-			$("#btnEdit").on("click", function() {
+			$("#btnEdit").on("click", function(){
 				var boardNo = $("#boardNo");
 				var boardNoVal = boardNo.val();
 				
@@ -23,10 +23,10 @@
 				formObj.submit();
 			});
 			
-			$("#btnList").on("click", function() {
+			$("#btnList").on("click", function(){
 				self.location = "/board/list";
 			});
-		})
+		});
 	</script>
 	
 	<body>
@@ -45,14 +45,14 @@
 				</tr>
 				<tr>
 					<td>Content</td>
-					<td><textarea name="Content" th:field="*{content}" readonly="readonly"></textarea></td>
+					<td><textarea name="content" th:field="*{content}" readonly="readonly"></textarea></td>
 				</tr>
 			</table>
 		</form>
 		
 		<div>
 			<button type="submit" id="btnEdit">Edit</button>
-			<button type="submit" id="btnRemove">btnRemove</button>
+			<button type="submit" id="btnRemove">Remove</button>
 			<button type="submit" id="btnList">List</button>
 		</div>
 	</body>

@@ -25,7 +25,6 @@ public class BoardController {
 
 	@GetMapping("/register") public void registerForm(Board board, Model model)throws Exception {
 		
-		
 	}
 
 	@PostMapping("/register")
@@ -51,5 +50,28 @@ public class BoardController {
 	@GetMapping("/read")
 	public void read(Long boardNo, Model model) throws Exception {
 		model.addAttribute(service.read(boardNo));
+	}
+	
+	@GetMapping("/modify")
+	public void modifyForm(Long boardNo, Model model) throws Exception{
+		model.addAttribute(service.read(boardNo));
+	}
+	
+	@PostMapping("modify")
+	public String modify(Board board, Model model) throws Exception {
+		service.modify(board);
+		
+		model.addAttribute("msg", "수정이 완료되었습니다.");
+		
+		return "board/success";
+	}
+	
+	@PostMapping("/remove")
+	public String remove(Long boardNo, Model model) throws Exception {
+		service.remove(boardNo);
+		
+		model.addAttribute("msg","삭제가 완료되었습니다.");
+		
+		return "board/success";
 	}
 }

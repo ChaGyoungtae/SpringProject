@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -22,6 +23,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
+	@Transactional
 	public List<Board> list() throws Exception {
 		return repository.findAll(Sort.by(Direction.DESC,"boardNo"));
 	}
@@ -29,5 +31,21 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board read(Long boardNo) throws Exception {
 		return repository.getOne(boardNo);
+	}
+	
+	@Override
+	public void modify(Board board) throws Exception {
+		Board boardEntity = repository.getOne(board.getBoardNo());
+		
+		boardEntity.setTitle(board.getTitle());
+		boardEntity.setContent(board.getContent());
+		
+		repository.save(boardEntity);
+	}
+	
+	
+	@Override
+	public void remove(Long boardNo) throws Exception {
+		repository.deleteById(boardNo);
 	}
 }
